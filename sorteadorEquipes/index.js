@@ -15,6 +15,10 @@ function addToTable(data) {
 function formarGrupos(){
     const nomes = document.getElementById("nomes");
     const formacao = document.getElementById("formacao");
+    if(nomes.value == "" || formacao.value == ""){
+        alert("Preencha todos os campos!");
+        return;
+    }
     const nomesArray = nomes.value.split(",");
 
     const data = {};
