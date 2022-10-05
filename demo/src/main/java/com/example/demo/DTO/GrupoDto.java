@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoDto {
-    List<String> alunos;
+    public List<String> alunos;
 
     public void adicionarAluno(String aluno){
         if(alunos == null){
