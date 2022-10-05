@@ -37,7 +37,7 @@ public class SorteadorServico {
     private void distribuirEmGrupos(SorteioDto sorteioDto) {
         List<String> alunos = sorteioDto.alunos;
         Integer qtdPorGrupo = sorteioDto.qtdPorGrupo;
-        Integer qtdGrupos = (int) Math.ceil((double) alunos.size() / qtdPorGrupo);
+        Integer qtdGrupos = alunos.size() / qtdPorGrupo;
         sortearGrupos(alunos, qtdPorGrupo, qtdGrupos);
     }
 
@@ -46,6 +46,17 @@ public class SorteadorServico {
             GrupoDto grupoDto = new GrupoDto();
             adicionarAlunosAoGrupo(alunos, qtdPorGrupo, grupoDto);
             listaGrupos.add(grupoDto);
+        }
+        if(alunos.size()>0)
+            distribuirRestante(alunos);
+    }
+    
+     private void distribuirRestante(List<String> alunos) {
+        while(alunos.size()>0){
+            int aleatorioGrupo = gerarAleatorio(listaGrupos.size());
+            int aleatorioAluno = gerarAleatorio(alunos.size());
+            listaGrupos.get(aleatorioGrupo).adicionarAluno(alunos.get(aleatorioAluno));
+            alunos.remove(aleatorioAluno);
         }
     }
 
